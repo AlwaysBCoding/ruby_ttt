@@ -28,7 +28,7 @@ class Game
 	end
 
 	def method_missing(method_name, *args)
-		delegated_methods = [:empty_squares, :winner?]
+		delegated_methods = [:empty_squares, :winner?, :mark_square, :undo_move]
 		if delegated_methods.include?(method_name)
 			self.board.send(method_name, *args)
 		else

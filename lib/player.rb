@@ -25,7 +25,21 @@ class Player
 
 	def get_minimax_scores(game, turn)
 		scores = []
-		return [game.board.score(self)] # if
+		return [game.board.score(self)] if game.over?
+
+		game.empty_squares.each do |move|
+			game.mark_square(move, game.send(turn).mark)
+			minimax_scores = get_minimax_scores(game, game.switch_turn(turn))
+
+			if game.send(turn) == self
+				scores << minimax_scores.min
+			elsif game.send(turn) != self
+				scores << minimax_scores.max
+			end
+
+			game.undo_move(move)
+		end
+		return scores
 	end
 
 	def get_minimax_square(game, turn)

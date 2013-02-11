@@ -39,6 +39,16 @@ describe Board do
     squares.each { |square| board.mark_square(square, marker) }
   end
 
+  it 'can undo moves from the board' do
+    board = Board.new
+    mark_squares(board, [1,2,4], "X")
+    board.empty_squares.length.should eq 6
+    board.empty_squares.should_not include(2)
+    board.undo_move(2)
+    board.empty_squares.length.should eq 7
+    board.empty_squares.should include(2)
+  end
+
   context '3x3' do
     let(:board) { Board.new }
 

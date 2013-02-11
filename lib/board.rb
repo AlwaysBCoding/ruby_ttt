@@ -12,6 +12,11 @@ class Board
     squares[row][column] = marker
   end
 
+  def undo_move(square_index)
+    row, column = translate_index(square_index)
+    squares[row][column] = nil
+  end
+
   def value_at(square_index)
     row, column = translate_index(square_index)
     squares[row][column]

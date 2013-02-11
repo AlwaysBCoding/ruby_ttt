@@ -46,6 +46,31 @@ describe Player do
 	  	square.should eq 3
 	  end
 
+	  it 'can block an opponents horizontal winning move' do
+	  	game = Game.new(human_player, computer_player)
+	  	mark_squares(game.board, [1,3], "X")
+	  	mark_squares(game.board, [5], "O")
+	  	square = computer_player.minimax(game, :player2)
+	  	square.should eq 2
+	  end
+
+		it 'can make a vertical winning move' do
+	  	game = Game.new(human_player, computer_player)
+	  	mark_squares(game.board, [3,6], "O")
+	  	mark_squares(game.board, [2,5], "X")
+	  	square = computer_player.minimax(game, :player2)
+	  	square.should eq 9
+	  end
+
+	  it 'can block an opponents vertical winning move' do
+	  	game = Game.new(human_player, computer_player)
+	  	mark_squares(game.board, [1,4], "X")
+	  	mark_squares(game.board, [5], "O")
+	  	square = computer_player.minimax(game, :player2)
+	  	square.should eq 7
+	  end
+
+
 	end
 
 end
