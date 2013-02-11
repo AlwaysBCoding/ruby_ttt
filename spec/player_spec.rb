@@ -70,6 +70,21 @@ describe Player do
 	  	square.should eq 7
 	  end
 
+		it 'can make a diagonal winning move' do
+	  	game = Game.new(human_player, computer_player)
+	  	mark_squares(game.board, [3,5], "O")
+	  	mark_squares(game.board, [4,2,9], "X")
+	  	square = computer_player.minimax(game, :player2)
+	  	square.should eq 7
+	  end
+
+	  it 'can block an opponents diagonal winning move' do
+	  	game = Game.new(human_player, computer_player)
+	  	mark_squares(game.board, [5,3], "X")
+	  	mark_squares(game.board, [1], "O")
+	  	square = computer_player.minimax(game, :player2)
+	  	square.should eq 7
+	  end
 
 	end
 
