@@ -39,6 +39,13 @@ describe Player do
 	  	square.should eq 5
 	  end
 
+	  it 'can make a horizontal winning move' do
+	  	game = Game.new(human_player, computer_player)
+	  	mark_squares(game.board, [1,2], "O")
+	  	square = computer_player.minimax(game, :player2)
+	  	square.should eq 3
+	  end
+
 	end
 
 end

@@ -16,6 +16,10 @@ class Game
 		return @turn
 	end
 
+	def over?
+		return true if winner?(@player1.mark) || winner?(@player2.mark) || empty_squares.count == 0
+	end
+
 	private
 
 	def set_opponents(player1, player2)
@@ -24,7 +28,7 @@ class Game
 	end
 
 	def method_missing(method_name, *args)
-		delegated_methods = [:empty_squares]
+		delegated_methods = [:empty_squares, :winner?]
 		if delegated_methods.include?(method_name)
 			self.board.send(method_name, *args)
 		else

@@ -18,7 +18,26 @@ class Player
 		elsif game.empty_squares.count == 8
 			return 5 if game.empty_squares.include?(5)
 			return 1 if !game.empty_squares.include?(5)
+		else
+			return get_minimax_square(game, turn)
 		end
+	end
+
+	def get_minimax_scores(game, turn)
+		scores = []
+		return [game.board.score(self)] # if
+	end
+
+	def get_minimax_square(game, turn)
+		moves_with_score = {}
+		scores = get_minimax_scores(game, turn)
+
+		game.empty_squares.each_with_index do |move, index|
+			moves_with_score[move] = scores[index]
+		end
+
+		max = moves_with_score.values.max
+		return moves_with_score.select { |k,v| v == max }.keys.first
 	end
 
 end

@@ -22,4 +22,24 @@ describe Game do
 		squares.count.should eq 9
 	end
 
+	def mark_squares(board, squares, marker)
+    squares.each { |square| board.mark_square(square, marker) }
+  end
+
+	it 'knows when a game is over' do
+		game.should_not be_over
+		mark_squares(game.board, [1,2,3], "X")
+		game.should be_over
+		game = Game.new(player1, player2)
+		mark_squares(game.board, [1,3], "X")
+		game.should_not be_over
+		mark_squares(game.board, [2,5,8], "O")
+		game.should be_over
+		game = Game.new(player1, player2)
+    mark_squares(game.board, [2,4,5,7,9], "X")
+    game.should_not be_over
+    mark_squares(game.board, [1,3,6,8], "O")
+    game.should be_over
+	end
+
 end
