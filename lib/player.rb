@@ -1,8 +1,8 @@
 class Player
 
-	attr_accessor :species, :mark
+	attr_accessor :species, :mark, :opponent
 
-	def initialize(species, mark)
+	def initialize(species, mark="X")
 		@species = "human" if species == "H"
 		@species = "computer" if species == "C"
 		@mark = mark

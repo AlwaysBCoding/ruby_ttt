@@ -21,4 +21,11 @@ describe Player do
 		board.value_at(3).should eq human_player.mark
 	end
 
+	describe "#minimax" do
+		def mark_squares(board, squares, marker)
+	    squares.each { |square| board.mark_square(square, marker) }
+	  end
+
+	end
+
 end
