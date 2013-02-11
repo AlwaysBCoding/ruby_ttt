@@ -5,6 +5,7 @@ describe Player do
 	let(:board) { Board.new }
 	let(:human_player) { Player.new("H", "X") }
 	let(:computer_player) { Player.new("C", "O") }
+	let(:game) { Game.new(human_player, computer_player) }
 
 	it 'can be of type Human or Computer' do
 		human_player.species.should eq "human"
@@ -24,6 +25,18 @@ describe Player do
 	describe "#minimax" do
 		def mark_squares(board, squares, marker)
 	    squares.each { |square| board.mark_square(square, marker) }
+	  end
+
+	  it 'returns the top left square for the game move 1' do
+	  	square = computer_player.minimax(game, :player2)
+	  	square.should eq 1
+	  end
+
+	  it 'returns the middle square for game move 2' do
+	  	game = Game.new(human_player, computer_player)
+	  	mark_squares(game.board, [1], "O")
+	  	square = computer_player.minimax(game, :player2)
+	  	square.should eq 5
 	  end
 
 	end

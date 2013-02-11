@@ -12,4 +12,13 @@ class Player
 		board.mark_square(square, @mark)
 	end
 
+	def minimax(game, turn)
+		if game.empty_squares.count == 9
+			return 1
+		elsif game.empty_squares.count == 8
+			return 5 if game.empty_squares.include?(5)
+			return 1 if !game.empty_squares.include?(5)
+		end
+	end
+
 end
