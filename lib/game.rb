@@ -1,10 +1,11 @@
 class Game
 
-	attr_accessor :player1, :player2
+	attr_accessor :player1, :player2, :turn
 
-	def initialize(player1, player2)
+	def initialize(player1, player2, turn=:player1)
 		@player1 = player1
 		@player2 = player2
+		@turn = :player1
 		set_opponents(@player1, @player2)
 	end
 
