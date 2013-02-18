@@ -1,4 +1,4 @@
-class Board
+class Game::Board
 
   attr_reader :size, :squares
 
